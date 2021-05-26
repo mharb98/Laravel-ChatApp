@@ -53,11 +53,20 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="manageContacts" class="nav-link" href="/contacts" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Manage Contacts
-                                </a>
-                            </li>
+                            @if (Request::is('index'))
+                                <li class="nav-item dropdown">
+                                    <a id="manageContacts" class="nav-link ml-5" href="/contacts" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Manage Contacts
+                                    </a>
+                                </li>
+                            @endif
+                            @if (request::is('contacts'))
+                                <li class="nav-item dropdown">
+                                    <a id="home" class="nav-link ml-5" href="/index" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Home
+                                    </a>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
