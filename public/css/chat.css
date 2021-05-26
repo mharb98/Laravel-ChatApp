@@ -15,7 +15,7 @@
     border-radius:10px;
 }
 
-ul{
+.chatUl{
     height:600px;
     overflow:hidden;
     overflow-y:scroll;
@@ -24,7 +24,7 @@ ul{
     padding-left:0px;
 }
 
-li{
+.chatUl.li{
     border-bottom:1px solid #DCDCDC;
 }
 
@@ -38,3 +38,51 @@ li{
     font-size:12px;
 }
 
+.right{
+    width:60%;
+    float:right;
+    margin-left:10%;
+}
+
+.pName{
+    padding:4px 10px 5px 14px;
+    font-size:19px;
+}
+
+.messageArea{
+    background-color:white;
+    overflow-y:scroll;
+    height:540px;
+    width:100%;
+    margin:-16px 0px 20px 0px;
+}
+
+.other,
+.you{
+    width: 100%;
+}
+
+.pOther{
+    padding-left:5px;
+    background-color:#fcae1e;
+    width:30%;
+    border-radius:10px;
+    margin-left:2%;
+}
+
+.pYou{
+    padding-left:5px;
+    background-color:#b1eea8;
+    width:30%;
+    border-radius:10px;
+    margin-left:68%;
+}
+
+#message{
+    border-radius:10px;
+    width:90%;
+}
+
+#manageContacts{
+    margin-right: 20px;
+}

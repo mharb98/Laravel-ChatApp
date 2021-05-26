@@ -11,7 +11,7 @@
                 </form>
             </div>
             <nav>
-            <ul>
+            <ul class="chatUl">
                 <li>
                     <div class="contact">
                         <p class="username">User Name 1</p>
@@ -120,65 +120,65 @@
             </ul>
             </nav>
         </div>
-        <div class="right" style="width:60%;float:right;margin-left:10%;">
+        <div class="right">
             <div id="contactName">
-                <p style="padding:4px 10px 5px 14px;font-size:19px;">User Name 1</p>
+                <p class="pName">User Name 1</p>
             </div>
-            <div style="background-color:white;overflow-y:scroll;height:540px;width:100%;margin:-16px 0px 20px 0px;">
-                <div class="other" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#fcae1e;width:30%;border-radius:10px;margin-left:2%;">
+            <div class="messageArea">
+                <div class="other">
+                    <p class="pOther">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="you" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#b1eea8;width:30%;border-radius:10px;margin-left:68%;">
+                <div class="you">
+                    <p class="pYou">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="other" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#fcae1e;width:30%;border-radius:10px;margin-left:2%;">
+                <div class="other">
+                    <p class="pOther">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="you" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#b1eea8;width:30%;border-radius:10px;margin-left:68%;">
+                <div class="you">
+                    <p class="pYou">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="other" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#fcae1e;width:30%;border-radius:10px;margin-left:2%;">
+                <div class="other">
+                    <p class="pOther">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="you" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#b1eea8;width:30%;border-radius:10px;margin-left:68%;">
+                <div class="you">
+                    <p class="pYou">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="other" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#fcae1e;width:30%;border-radius:10px;margin-left:2%;">
+                <div class="other">
+                    <p class="pOther">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="you" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#b1eea8;width:30%;border-radius:10px;margin-left:68%;">
+                <div class="you">
+                    <p class="pYou">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="other" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#fcae1e;width:30%;border-radius:10px;margin-left:2%;">
+                <div class="other">
+                    <p class="pOther">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
-                <div class="you" style="width:100%;">
-                    <p style="padding-left:5px;background-color:#b1eea8;width:30%;border-radius:10px;margin-left:68%;">
+                <div class="you">
+                    <p class="pYou">
                         My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
                     </p>
                 </div>
             </div>
             <div id="sendDiv">
                 <form action="/sendMessage" method="POST">
-                    <input type="text" name="message" id="message" placeholder="Send a message..." style="border-radius:10px;width:90%;">
+                    <input type="text" name="message" id="message" placeholder="Send a message...">
                     <input type="submit" value="send">
                 </form>
             </div>

@@ -21,6 +21,10 @@ Route::get('/index',function(){
     return view('index');
 });
 
+Route::get('/contacts',function(){
+    return view('contacts');
+});
+
 Route::post('/message',[App\Http\Controllers\MessageController::class, 'handleMessage']);
 
 Auth::routes();
