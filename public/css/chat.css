@@ -1,0 +1,40 @@
+.left{
+    width:25%;
+    float:left;
+}
+
+#searchDiv{
+    background-color:#D3D3D3;
+}
+
+#searchForm{
+    padding:5px 10px 5px 14px;
+}
+
+#contactName{
+    border-radius:10px;
+}
+
+ul{
+    height:600px;
+    overflow:hidden;
+    overflow-y:scroll;
+    list-style-type:none;
+    background-color:white;
+    padding-left:0px;
+}
+
+li{
+    border-bottom:1px solid #DCDCDC;
+}
+
+.username{
+    margin:0px 0px 0px 16px;
+}
+
+.phone,
+.lastmessage{
+    margin:0px 0px 0px 16px;
+    font-size:12px;
+}
+
