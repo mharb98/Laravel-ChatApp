@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/index',function(){
     return view('index');
 });
 
-Route::get('/contacts',function(){
-    return view('contacts');
-});
+Route::get('/contacts',[App\Http\Controllers\ContactController::class, 'get']);
+
+Route::post('/createContact',[App\Http\Controllers\ContactController::class, 'create']);
+
+Route::post('/deleteContact',[App\Http\Controllers\ContactController::class, 'delete']);
 
 Route::post('/message',[App\Http\Controllers\MessageController::class, 'handleMessage']);
 

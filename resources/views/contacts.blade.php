@@ -8,7 +8,7 @@
                 <div class="card-header">Add Contact</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/addContact">
+                    <form method="POST" action="createContact">
                         @csrf
 
                         <div class="form-group row">
@@ -27,7 +27,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="addContact">
                                     Add Contact
                                 </button>
                             </div>
@@ -45,56 +45,13 @@
                 <div class="card-header">Delete Contact</div>
                 
                 <div style="height:350px;" class="card-body overflow-auto">
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
-                    <div class="row justify-content-center">
-                        <p class="col-md-4 mt-2">Contact Name</P>
-                        <p class="col-md-4 mt-2">01013747167</p>
-                        <button class="btn btn-primary" style="height:40px;">Delete Contact</button>
-                    </div>
+                    @foreach($contacts as $contact)
+                        <div class="row justify-content-center">
+                            <p class="col-md-4 mt-2">{{$contact['name']}}</p>
+                            <p class="col-md-4 mt-2">{{$contact['phone']}}</p>
+                            <button class="btn btn-primary" style="height:40px" id="delete-{{$contact['id']}}">Delete Contact</button>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
