@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/index',function(){
-    return view('index');
-});
+Route::get('/index',[App\Http\Controllers\ContactController::class, 'index']);
 
 Route::get('/contacts',[App\Http\Controllers\ContactController::class, 'get']);
 

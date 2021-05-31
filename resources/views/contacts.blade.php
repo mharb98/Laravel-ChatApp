@@ -1,3 +1,4 @@
+<script src="{{ asset('js/Contact.js') }}"></script>
 @extends('layouts.app')
 
 @section('content')
@@ -8,7 +9,7 @@
                 <div class="card-header">Add Contact</div>
 
                 <div class="card-body">
-                    <form method="POST" action="createContact">
+                    <form method="POST" action="createContact" id="contactForm">
                         @csrf
 
                         <div class="form-group row">
@@ -44,7 +45,7 @@
             <div class="card">
                 <div class="card-header">Delete Contact</div>
                 
-                <div style="height:350px;" class="card-body overflow-auto">
+                <div style="height:350px;" class="card-body overflow-auto" id="contactsCard">
                     @foreach($contacts as $contact)
                         <div class="row justify-content-center">
                             <p class="col-md-4 mt-2">{{$contact['name']}}</p>
