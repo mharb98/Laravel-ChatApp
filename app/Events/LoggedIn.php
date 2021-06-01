@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class GetMessage implements ShouldBroadcast
+class LoggedIn implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -37,6 +37,6 @@ class GetMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['notification-channel_'.$this->receiver_id];
+        return ['logged-channel_'.$this->receiver_id];
     }
 }

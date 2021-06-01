@@ -82,6 +82,13 @@ window.addEventListener('load',()=>{
         if(currentContactID == sender_id)
             renderOtherMessage();
     });
+
+    window.Echo.channel('logged-channel_'+curr_user).listen('LoggedIn',(e)=>{
+        let temp_li = getCurrLi(e.sender_id);
+        if(e.message == "1"){
+            temp_li.style.backgroundColor = "#64FF33";
+        }
+    });
 });
 
 document.addEventListener('click',(e)=>{

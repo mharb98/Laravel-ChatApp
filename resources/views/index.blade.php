@@ -22,16 +22,7 @@
                 <p style="font-size:19px;" id="contactNameMessage">Start A converstation with someone</p>
             </div>
             <div class="overflow-auto w-100 mr-0 ml-0 mb-4" id="convArea" style="margin-top:-16px;height:540px;background-color:white;">
-                <!--<div class="w-100">
-                    <p class="pl-2 ml-3 rounded" style="background-color:#fcae1e;width:30%;">
-                        My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
-                    </p>
-                </div>
-                <div class="w-100">
-                    <p class="pl-2 rounded" style="background-color:#b1eea8; margin-left:68%;width:30%;">
-                        My name is marwan i live in Egypt, I want to visit el sembelawen some day, would you come with me?
-                    </p>
-                </div>-->
+                
             </div>
             <div id="sendDiv">
                 <form action="/message" method="POST">

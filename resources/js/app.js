@@ -30,11 +30,3 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
-
-let curr_id = document.getElementById('curr_user');
-console.log(curr_id);
-
-window.Echo.channel('notification-channel_'+curr_id).listen('GetMessage',(e)=>{
-    console.log(e.message);
-    console.log(e.sender_id);
-});
