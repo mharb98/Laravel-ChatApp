@@ -9,7 +9,9 @@ class MessageController extends Controller
 {
     public function handleMessage(){
         $message = request('message');
-        broadcast(new GetMessage($message));
+        $receiver_id = request('receiver_id');
+        $sender_id = auth()->id();
+        broadcast(new GetMessage($message,$receiver_id,$sender_id));
         return 'Ok';
     }
 }

@@ -1,10 +1,22 @@
 let currentContactName = null;
 let currentContactPhone = null;
 let currentContactID = null;
+let message = null;
+
+window.addEventListener('load',()=>{
+    let curr_id = '2';
+    window.Echo.channel('notification-channel_'+curr_id).listen('GetMessage',(e)=>{
+        console.log(e.message);
+        console.log(e.sender_id);
+    });
+
+});
 
 document.addEventListener('click',(e)=>{
     let contactNameMessage = document.getElementById("contactNameMessage");
-    
+    let send = document.getElementById('send');
+    let messageArea = document.getElementById('message');
+
     let x = e.target.nodeName;
 
     let children = null;
@@ -29,4 +41,26 @@ document.addEventListener('click',(e)=>{
 
     contactNameMessage.innerHTML = '';
     contactNameMessage.innerHTML = children[0].innerHTML;
+
+    send.addEventListener('click',()=>{
+        message = messageArea.value;
+        $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        $.ajax({
+            type : 'POST',
+            url : '/message',
+            data : {'message':message,'receiver_id':currentContactID},
+            success : function(resp){
+                console.log(resp);
+            },
+            error : function(){
+                console.log('Failed to send message');
+            }
+        });
+        console.log(currentContactID);
+    });
 });

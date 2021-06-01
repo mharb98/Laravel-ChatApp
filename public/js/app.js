@@ -1903,8 +1903,10 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
-window.Echo.channel('channel-name').listen('GetMessage', function (e) {
-  alert(e.message);
+var curr_id = document.getElementById('curr_user');
+window.Echo.channel('notification-channel_' + curr_id).listen('GetMessage', function (e) {
+  console.log(e.message);
+  console.log(e.sender_id);
 });
 
 /***/ }),

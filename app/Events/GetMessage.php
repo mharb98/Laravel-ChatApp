@@ -15,15 +15,19 @@ class GetMessage implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+    public $receiver_id;
+    public $sender_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($message,$receiver_id,$sender_id)
     {
         $this->message = $message;
+        $this->receiver_id = $receiver_id;
+        $this->sender_id = $sender_id;
     }
 
     /**
@@ -33,6 +37,7 @@ class GetMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel-name');
+        //return new Channel('channel-name');
+        return ['notification-channel_'.$this->receiver_id];
     }
 }

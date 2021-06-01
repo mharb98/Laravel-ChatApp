@@ -59,7 +59,7 @@ class ContactController extends Controller
     public function index(){
         $list = self::getContacts();
 
-        return view('index',['contacts' => $list]);
+        return view('index',['contacts' => $list,'current_user' => auth()->id()]);
     }
 
     public function get(){
