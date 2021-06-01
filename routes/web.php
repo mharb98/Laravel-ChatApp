@@ -27,6 +27,8 @@ Route::post('/deleteContact',[App\Http\Controllers\ContactController::class, 'de
 
 Route::post('/message',[App\Http\Controllers\MessageController::class, 'handleMessage']);
 
+Route::get('/getCurrUser', [App\Http\Controllers\UserController::class, 'getUser']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
