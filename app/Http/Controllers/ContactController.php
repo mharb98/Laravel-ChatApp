@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Events\LoggedIn;
+use App\Events\Online;
 
 class ContactController extends Controller
 {
@@ -34,6 +35,7 @@ class ContactController extends Controller
     private function notifyContacts(){
         $user_id = auth()->id();
         $list = auth()->user()->contacts()->get();
+        
         foreach($list as $contact){
             $receiver_id = $contact["contact_id"];
             broadcast(new LoggedIn("1",$receiver_id,$user_id));
@@ -88,5 +90,15 @@ class ContactController extends Controller
         Contact::where('contact_id',auth()->id())->delete();
 
         return "success";
+    }
+
+    public function sendOnlineNotification(){
+        $receiver_id = request('contact_id');
+
+        $sender_id = auth()->id();
+
+        broadcast(new Online($receiver_id,$sender_id));
+
+        return "Ok";
     }
 }
