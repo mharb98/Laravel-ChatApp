@@ -7,7 +7,7 @@ use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Events\LoggedIn;
-use App\Events\Online;
+use App\Events\OnlineEvent;
 
 class ContactController extends Controller
 {
@@ -93,12 +93,12 @@ class ContactController extends Controller
     }
 
     public function sendOnlineNotification(){
-        $receiver_id = request('contact_id');
-
         $sender_id = auth()->id();
 
-        broadcast(new Online($receiver_id,$sender_id));
+        $receiver_id = request('receiver_id');
 
-        return "Ok";
+        broadcast(new OnlineEvent($sender_id,$receiver_id));
+
+        return 'Ok';
     }
 }

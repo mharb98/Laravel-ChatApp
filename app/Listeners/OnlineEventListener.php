@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\Online;
+use App\Events\OnlineEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendOnlineNotification
+class OnlineEventListener
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendOnlineNotification
     /**
      * Handle the event.
      *
-     * @param  Online  $event
+     * @param  OnlineEvent  $event
      * @return void
      */
-    public function handle(Online $event)
+    public function handle(OnlineEvent $event)
     {
         //
     }

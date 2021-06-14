@@ -45,7 +45,7 @@ function sendMessage(message,receiver_id){
     });
 }
 
-function sendOnlineNotification(contact_id){
+function sendAlert(receiver_id){
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -54,13 +54,13 @@ function sendOnlineNotification(contact_id){
     
     $.ajax({
         type : 'POST',
-        url : '/sendOnlineNotification',
-        data : {'contact_id':contact_id},
+        url : '/alert',
+        data : {'receiver_id':receiver_id},
         success : function(resp){
             console.log(resp);
         },
         error : function(){
-            console.log('Failed to send online notification to contact');
+            console.log('Failed to send alert');
         }
     });
 }
@@ -110,14 +110,11 @@ window.addEventListener('load',()=>{
             temp_li.style.backgroundColor = "#64FF33";
         }
 
-        sendOnlineNotification(e.sender_id);
+        sendAlert(e.receiver_id);
     });
 
-    window.Echo.channel('online-channel_'+curr_user).listen('Online', (e)=>{
-        let temp_li = getCurrLi(e.sender_id);
-
-        console.log(e.sender_id);
-        //temp_li.style.backgroundColor = "#64FF33";
+    window.Echo.channel('online-channel_1').listen('OnlineEvent',(e)=>{
+        console.log('Hey');
     });
 });
 

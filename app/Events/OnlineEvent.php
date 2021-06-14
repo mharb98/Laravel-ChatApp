@@ -10,23 +10,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Online implements ShouldBroadcast
+class OnlineEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $receiver_id;
     public $sender_id;
+    public $receiver_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-
-    public function __construct($receiver_id,$sender_id)
+    public function __construct($sender_id, $receiver_id)
     {
-        $this->receiver_id = $receiver_id;
         $this->sender_id = $sender_id;
+        $this->receiver_id = $receiver_id;
     }
 
     /**

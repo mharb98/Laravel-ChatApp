@@ -30,9 +30,9 @@ class EventServiceProvider extends ServiceProvider
             LoggedInListener::class,
         ],
 
-        Online::class => [
-            SendOnlineNotification::class,
-        ],
+        OnlineEvent::class => [
+            OnlineEventListener::class,
+        ]
     ];
 
     /**
@@ -61,11 +61,11 @@ class EventServiceProvider extends ServiceProvider
         }));
 
         Event::Listen(
-            Online::class,
-            [SendOnlineNotification::class, 'handle']
+            OnlineEvent::class,
+            [OnlineEventListener::class, 'handle'],
         );
 
-        Event::Listen(queueable(function (Online $event){
+        Event::Listen(queueable(function (OnlineEvent $event){
             //
         }));
     }
