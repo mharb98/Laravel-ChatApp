@@ -47,14 +47,4 @@ class MessageController extends Controller
 
         return $messages;
     }
-
-    public function getLastMessage($current_id, $other_id){
-        $messages = self::returnMessages($current_id, $other_id);
-
-        $message_count = $messages->count();
-
-        $last_message = $messages[$message_count - 1];
-
-        return $last_message;
-    }
 }

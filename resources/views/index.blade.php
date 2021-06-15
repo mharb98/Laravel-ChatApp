@@ -11,7 +11,11 @@
                     <li class="list-group-item" id="li-{{$contact['id']}}" style="cursor:pointer;">
                         <p class="ml-3 mt-0 mr-0 mb-0">{{$contact['name']}}</p>
                         <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">{{$contact['phone']}}</p>
-                        <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">no messages yet</p>
+                        @if($contact['sender_id'] == $contact['id'])
+                            <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">Other:{{$contact['message']}}</p>
+                        @else
+                            <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">You:{{$contact['message']}}</p>
+                        @endif
                     </li>
                 @endforeach
             </ul>
