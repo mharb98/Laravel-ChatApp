@@ -77,7 +77,7 @@ function modifyList(){
     curr_li.style.backgroundColor = "yellow";
 }
 
-function renderOtherMessage(){
+function renderOtherMessage(sent_message){
     let convArea = document.getElementById('convArea');
     let temp = `<div class="w-100">
                     <p class="pl-2 ml-3 rounded" style="background-color:#fcae1e;width:30%;">${sent_message}</p>
@@ -106,12 +106,27 @@ function getAllMessages(other_id){
         data : {'other_id' : other_id},
         async : false,
         success : function(resp){
-            console.log(resp);
+            renderConversation(resp);
         },
         error : function(){
             console.log('Could not get messages, try again later');
         }
     });
+}
+
+function renderConversation(conversation){
+    let dummy = null;
+    let message = null;
+    for(let i = 0;i < conversation.length;i++){
+        dummy = conversation[i]['sender_id'];
+        message = conversation[i]['message'];
+        if(dummy === curr_user){
+            renderMyMessage(message);
+        }
+        else{
+            renderOtherMessage(message);
+        }
+    }
 }
 
 window.addEventListener('load',()=>{
@@ -122,7 +137,7 @@ window.addEventListener('load',()=>{
         curr_li = getCurrLi(sender_id);
         modifyList();
         if(currentContactID == sender_id)
-            renderOtherMessage();
+            renderOtherMessage(sent_message);
     });
 
     window.Echo.channel('logged-channel_'+curr_user).listen('LoggedIn',(e)=>{
