@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
+            $table->string('api_token');
+            $table->string('status')->default('online');
             $table->rememberToken();
             $table->timestamps();
         });

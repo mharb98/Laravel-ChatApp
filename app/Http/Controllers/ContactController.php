@@ -91,14 +91,4 @@ class ContactController extends Controller
 
         return "success";
     }
-
-    public function sendOnlineNotification(){
-        $sender_id = auth()->id();
-
-        $receiver_id = request('receiver_id');
-
-        broadcast(new OnlineEvent($sender_id,$receiver_id));
-
-        return 'Ok';
-    }
 }

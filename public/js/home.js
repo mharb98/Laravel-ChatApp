@@ -7,6 +7,7 @@ let children = null;
 let sender_id = null;
 let sent_message = null;
 let curr_li = null;
+let vry = null;
 
 function getCurrUser(){
     let ret = null;
@@ -41,7 +42,7 @@ function sendMessage(message,receiver_id){
         },
         error : function(){
             console.log('Failed to send message');
-        }
+        },
     });
 }
 
@@ -92,6 +93,27 @@ function renderMyMessage(my_message){
     convArea.innerHTML += temp;
 }
 
+function getAllMessages(other_id){
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    $.ajax({
+        type : 'POST',
+        url : '/getAllMessages',
+        data : {'other_id' : other_id},
+        async : false,
+        success : function(resp){
+            console.log(resp);
+        },
+        error : function(){
+            console.log('Could not get messages, try again later');
+        }
+    });
+}
+
 window.addEventListener('load',()=>{
     curr_user = getCurrUser(); 
     window.Echo.channel('notification-channel_'+curr_user).listen('GetMessage',(e)=>{
@@ -109,12 +131,6 @@ window.addEventListener('load',()=>{
         if(e.message == "1"){
             temp_li.style.backgroundColor = "#64FF33";
         }
-
-        sendAlert(e.receiver_id);
-    });
-
-    window.Echo.channel('online-channel_1').listen('OnlineEvent',(e)=>{
-        console.log('Hey');
     });
 });
 
@@ -151,11 +167,10 @@ document.addEventListener('click',(e)=>{
         currentContactName = children[0].innerHTML;
         currentContactPhone = children[1].innerHTML;
 
-        console.log(currentContactID + '-' + currentContactName + '-' + currentContactPhone);
-
         contactNameMessage.innerHTML = '';
         contactNameMessage.innerHTML = children[0].innerHTML;
 
+        getAllMessages(currentContactID);
     }
 
     send.addEventListener('click',()=>{

@@ -27,7 +27,7 @@ Route::post('/deleteContact',[App\Http\Controllers\ContactController::class, 'de
 
 Route::post('/message',[App\Http\Controllers\MessageController::class, 'handleMessage']);
 
-Route::post('/alert',[App\Http\Controllers\ContactController::class, 'sendOnlineNotification']);
+Route::post('/getAllMessages',[App\Http\Controllers\MessageController::class, 'getAllMessages']);
 
 Route::get('/getCurrUser', [App\Http\Controllers\UserController::class, 'getUser']);
 
