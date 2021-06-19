@@ -6,15 +6,17 @@
     <div class="big d-flex">
         <div class="left w-25 float-left mt-4">
             <nav>
-            <ul class="overflow-auto list-group pl-0" style="background-color:white;height: 600px;">
+            <ul class="overflow-auto list-group pl-0" style="background-color:white;height: 600px;" id="contactsUL">
                 @foreach ($contacts as $contact)
                     <li class="list-group-item" id="li-{{$contact['id']}}" style="cursor:pointer;">
                         <p class="ml-3 mt-0 mr-0 mb-0">{{$contact['name']}}</p>
                         <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">{{$contact['phone']}}</p>
                         @if($contact['sender_id'] == $contact['id'])
                             <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">Other:{{$contact['message']}}</p>
-                        @else
+                        @elseif($contact['sender_id'] == $user_id)
                             <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">You:{{$contact['message']}}</p>
+                        @else
+                        <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">No messages yet!</p>
                         @endif
                     </li>
                 @endforeach

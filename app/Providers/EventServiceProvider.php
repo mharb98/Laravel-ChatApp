@@ -25,9 +25,13 @@ class EventServiceProvider extends ServiceProvider
         GetMessage::class => [
             GetMessageNotification::class,
         ],
-
+        
         LoggedIn::class => [
             LoggedInListener::class,
+        ],
+
+        AddContact::class => [
+            AddContactListener::class,
         ],
     ];
 
@@ -53,6 +57,15 @@ class EventServiceProvider extends ServiceProvider
         );
 
         Event::Listen(queueable(function (LoggedIn $event){
+            //
+        }));
+
+        Event::listen(
+            AddContact::class,
+            [AddContactListener::class, 'handle']
+        );
+
+        Event::Listen(queueable(function (AddContact $event){
             //
         }));
     }

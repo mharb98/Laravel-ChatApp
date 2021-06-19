@@ -7,7 +7,7 @@ use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Events\LoggedIn;
-use App\Events\OnlineEvent;
+use App\Events\AddContact;
 use App\Models\Message;
 
 class ContactController extends Controller
@@ -22,7 +22,11 @@ class ContactController extends Controller
 
         $message_count = $messages->count();
 
-        $last_message = $messages[$message_count - 1];
+        if($message_count > 0)
+            $last_message = $messages[$message_count - 1];
+        else
+            $last_message = array("sender_id"=>"-1", "receiver_id"=>"-1", "message"=>"No messages yet!");
+
 
         return $last_message;
     }
@@ -73,6 +77,12 @@ class ContactController extends Controller
 
         $user_id = auth()->id();
 
+        $user_phone = auth()->user()->phone;
+
+        $user_name = auth()->user()->name;
+
+        $status = 'create';
+
         if($user == null)
             return null;
         else{
@@ -86,7 +96,10 @@ class ContactController extends Controller
                 'user_id' => $contact_id,
             ]);
             $ret = $user;
+
+            broadcast(new AddContact($user_id, $contact_id, $status, $user_phone, $user_name));
         }
+
         return $user;
     }
 
@@ -95,7 +108,9 @@ class ContactController extends Controller
 
         self::notifyContacts();
 
-        return view('index',['contacts' => $list]);
+        $user_id = auth()->id();
+
+        return view('index',['contacts' => $list, 'user_id'=>$user_id]);
     }
 
     public function get(){

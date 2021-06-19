@@ -77,6 +77,18 @@ function modifyList(){
     curr_li.style.backgroundColor = "yellow";
 }
 
+function renderContact(sender_id,sender_phone,sender_name){
+    let contactsUL = document.getElementById('contactsUL');
+
+    let temp =  `<li class="list-group-item" id="li-${sender_id}" style="cursor:pointer;">
+                    <p class="ml-3 mt-0 mr-0 mb-0">${sender_name}</p>
+                    <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">${sender_phone}</p>
+                    <p class="ml-3 mt-0 mr-0 mb-0" style="font-size:12px;">No messages yet!</p>
+                </li>`;
+
+    contactsUL.innerHTML += temp;
+}
+
 function renderOtherMessage(sent_message){
     let convArea = document.getElementById('convArea');
     let temp = `<div class="w-100">
@@ -145,6 +157,19 @@ window.addEventListener('load',()=>{
         
         if(e.message == "1"){
             temp_li.style.backgroundColor = "#64FF33";
+        }
+    });
+
+    window.Echo.channel('addContact-channel_'+curr_user).listen('AddContact',(e)=>{
+        let sender_id = e.sender_id;
+        let status = e.status;
+        let sender_phone = e.sender_phone;
+        let sender_name = e.sender_name;
+        if(status === 'create'){
+            renderContact(sender_id,sender_phone,sender_name);
+        }
+        else if(status === 'delete'){
+            console.log('Feature will be done soon');
         }
     });
 });
