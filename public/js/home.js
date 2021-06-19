@@ -89,6 +89,24 @@ function renderContact(sender_id,sender_phone,sender_name){
     contactsUL.innerHTML += temp;
 }
 
+function deleteContact(sender_id){
+    let li = document.getElementById('li-'+sender_id);
+
+    li.parentNode.removeChild(li);
+}
+
+function clearConversation(){
+    let convArea = document.getElementById('convArea');
+
+    convArea.innerHTML = '';
+}
+
+function changeCurrentContact(str){
+    let contactNameMessage = document.getElementById("contactNameMessage");
+
+    contactNameMessage.innerHTML = str;
+}
+
 function renderOtherMessage(sent_message){
     let convArea = document.getElementById('convArea');
     let temp = `<div class="w-100">
@@ -169,7 +187,9 @@ window.addEventListener('load',()=>{
             renderContact(sender_id,sender_phone,sender_name);
         }
         else if(status === 'delete'){
-            console.log('Feature will be done soon');
+            deleteContact(sender_id);
+            clearConversation();
+            changeCurrentContact('Start a conversation with someone!');
         }
     });
 });

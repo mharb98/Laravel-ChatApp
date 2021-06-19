@@ -12,6 +12,10 @@ use App\Models\Message;
 
 class ContactController extends Controller
 {
+    private function deleteAllMessages($sender_id,$receiver_id){
+        Message::where('sender_id',$sender_id)->where('receiver_id',$receiver_id)->delete();
+        Message::where('sender_id',$receiver_id)->where('receiver_id',$sender_id)->delete();
+    }
     
     private function getLastMessage($current_id, $other_id){
         $messages = Message::where(function($query) use ($current_id, $other_id){
@@ -68,6 +72,15 @@ class ContactController extends Controller
         }
     }
 
+    public function checkContactExists($user_id, $contact_id){
+        $status = Contact::where('user_id',$user_id)->where('contact_id',$contact_id)->exists();
+
+        if($status)
+            return true;
+
+        return false;
+    }
+
     public function create(){
         $ret = null;
 
@@ -87,6 +100,12 @@ class ContactController extends Controller
             return null;
         else{
             $contact_id = $user['id'];
+
+            $contactExists = self::checkContactExists($user_id, $contact_id);
+
+            if($contactExists)
+                return null;
+
             Contact::create([
                 'user_id' => $user_id,
                 'contact_id' => $contact_id,
@@ -122,9 +141,21 @@ class ContactController extends Controller
     public function delete(){
         $contact_id = request('contact_id');
         
-        Contact::where('contact_id',$contact_id)->delete();
+        $user_id = auth()->id();
 
-        Contact::where('contact_id',auth()->id())->delete();
+        $checkUser = self::checkContactExists($user_id, $contact_id);
+
+        $status = 'delete';
+
+        if($checkUser){
+            Contact::where('user_id',$user_id)->where('contact_id',$contact_id)->delete();
+
+            Contact::where('user_id',$contact_id)->where('contact_id',$user_id)->delete();
+
+            self::deleteAllMessages($user_id,$contact_id);
+
+            broadcast(new AddContact($user_id, $contact_id, $status, null, null));
+        }
 
         return "success";
     }
